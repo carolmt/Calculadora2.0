@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import com.example.calculadora20.Calculator;
 
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     TextView resultado;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        operar = new Calculator(); // Inicializa la instancia de Calculator
         resultado = findViewById(R.id.resultado);
     }
 
@@ -107,6 +107,30 @@ public class MainActivity extends AppCompatActivity {
             resultado.setText(resultado.getText()+"0");
         }
     }
-    operar.sumar(resultado);
-
+    public void borrar(View view) {
+        resultado.setText("0");
+        numero1 = 0.0f; //reinicio todas las variables
+        numero2 = 0.0f;
+        operacion = "";
+    }
+    public void sumar(View view) {
+        numero1 = Float.parseFloat(resultado.getText().toString());
+        operacion = "+";
+        valorOriginalNumero1 = numero1;
+        resultado.setText("0"); //tenemos q ponerlo a 0 porq sino el numero2 se acumulará con el 1
+    }
+    public void restar(View view) {
+        numero1 = Float.parseFloat(resultado.getText().toString());
+        operacion = "-";
+        valorOriginalNumero1 = numero1;
+        resultado.setText("0");
+    }
+    public void escribirResultado(View view) {
+        numero2 = Float.parseFloat(resultado.getText().toString());
+        float res = operar.calcular(valorOriginalNumero1, numero2, operacion); //llamamos al metodo de la otra classe
+        resultado.setText(String.valueOf(res));
+        numero1 = 0.0f;
+        numero2 = 0.0f;
+        operacion = "";
+    }
 }

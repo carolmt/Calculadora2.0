@@ -1,8 +1,22 @@
 package com.example.calculadora20;
 
+import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
-public class Calculator extends MainActivity{
+public class Calculator{
+
+    public  float calcular(float numero1, float numero2, String operacion) {
+        float res = 0.0f;
+        if (operacion.equals("+")) {
+            res = numero1 + numero2;
+        } else if (operacion.equals("-")) {
+            res = numero1 - numero2;
+        } else if (operacion.equals("+")) {
+            res = numero1 * numero2;
+        }
+        return res;
+    }/*
     public void borrar(View view) {
         resultado.setText("0");
         numero1 = 0.0f; //reinicio todas las variables
@@ -36,5 +50,5 @@ public class Calculator extends MainActivity{
         numero1 = 0.0f; //reinicio todas las variables
         numero2 = 0.0f;
         operacion = "";
-    }
+    }*/
 }
